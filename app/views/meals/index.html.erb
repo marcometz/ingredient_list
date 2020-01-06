@@ -27,9 +27,15 @@
           <td><%= meal.amount %></td>
           <td><%= meal.recipes.count %></td>
           <td><span title="<%= meal.state.humanize %>" class="badge <%= meal.complete? ? 'badge-success' : 'badge-warning' %>">&nbsp;</span> </td>
-          <td><%= link_to 'Show', meal %></td>
-          <td><%= link_to 'Edit', edit_meal_path(meal) %></td>
-          <td><%= link_to 'Destroy', meal, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to meal do %><i class="far fa-eye"></i><% end %></td>
+          <td><%= link_to edit_meal_path(meal) do %><i class="far fa-edit"></i><% end %></td>
+          <td>
+            <% if meal.recipes.count.zero? %>
+              <%= link_to meal, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                <i class="far fa-trash"></i>
+              <% end %>
+            <% end %>
+          </td>
         </tr>
       <% end %>
     <% end %>

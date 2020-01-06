@@ -26,7 +26,7 @@
                       <tr>
                         <td><%= ingredient.title %></td>
                         <td><%= ingredient.total_count %> <%= ingredient.unit %></td>
-                        <td><%= link_to 'Edit', edit_ingredient_path(ingredient) %></td>
+                        <td><%= link_to edit_ingredient_path(ingredient) do %><i class="far fa-edit"></i><% end %></td>
                       </tr>
                     <% end %>
                   </tbody>

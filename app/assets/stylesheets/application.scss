@@ -15,3 +15,14 @@
  */
 
  @import "bootstrap";
+
+
+ tr.on-shopping-list {
+   td {
+     text-decoration: line-through;
+   }
+ }
+
+.table-responsive {
+    display: table;
+}

@@ -1,27 +1,85 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Zutaten / Einkaufsliste</h1>
+<div class="table d-none d-sm-block">
+  <h1>Zutaten / Einkaufsliste</h1>
+</div>
 
-<table class="table">
+
+<table class="table d-none d-sm-block">
   <thead>
     <tr>
       <th>Name</th>
-      <th>Mengeneinheit</th>
       <th>Menge pro Gericht/Tag</th>
       <th>Menge pro Woche</th>
-      <th colspan="3"></th>
+      <th>Einkaufsmengen</th>
+      <th colspan="2"></th>
+      <th></th>
     </tr>
   </thead>
 
   <tbody>
     <% @ingredients.each do |ingredient| %>
-      <tr>
+      <tr class="<%= ingredient.added_to_cart ? 'on-shopping-list' : '' %>">
         <td><%= ingredient.title %></td>
-        <td><%= ingredient.unit %></td>
-        <td><%= ingredient.total_amount_per_meal %></td>
-        <td><strong><%= ingredient.total_count %></strong></td>
-        <td><%= link_to 'Bearbeiten', edit_ingredient_path(ingredient) %></td>
-        <td><%= link_to 'Löschen', ingredient, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= ingredient.total_amount_per_meal %> <%= ingredient.unit %></td>
+        <td><strong><%= ingredient.total_count %> <%= ingredient.unit %></strong></td>
+        <td><strong><%= ingredient.package_count %> <%= ingredient.fancy_package_unit %></strong></td>
+        <td>
+          <%= link_to edit_ingredient_path(ingredient) do %>
+            <i class="far fa-edit"></i>
+          <% end %>
+          <% if ingredient.recipes.count.zero? %>
+            <%= link_to ingredient, method: :delete, data: { confirm: 'Are you sure?' } do %>
+              <i class="far fa-trash"></i>
+            <% end %>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to shop_ingredient_path(ingredient) do %>
+            <% if ingredient.added_to_cart %>
+              <i class="fas fa-shopping-cart"></i>
+            <% else %>
+              <i class="fas fa-cart-plus"></i>
+            <% end %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="table d-block d-sm-none">
+  <h1>Einkaufsliste</h1>
+</div>
+
+<table class="table d-block d-sm-none">
+  <tbody>
+    <% @ingredients.each do |ingredient| %>
+      <tr class="<%= ingredient.added_to_cart ? 'on-shopping-list' : '' %>">
+        <td>
+          <%= link_to shop_ingredient_path(ingredient) do %>
+            <% if ingredient.added_to_cart %>
+              <i class="fas fa-shopping-cart"></i>
+            <% else %>
+              <i class="fas fa-cart-plus"></i>
+            <% end %>
+          <% end %>
+        </td>
+        <td>
+          <%= ingredient.title %>:
+          <strong><%= ingredient.package_count %> <%= ingredient.fancy_package_unit %></strong>
+        </td>
+        <td>
+          <%= link_to edit_ingredient_path(ingredient) do %>
+            <i class="far fa-edit"></i>
+          <% end %>
+          <% if ingredient.recipes.count.zero? %>
+            <%= link_to ingredient, method: :delete, data: { confirm: 'Are you sure?' } do %>
+              <i class="far fa-trash"></i>
+            <% end %>
+          <% end %>
+        </td>
+
       </tr>
     <% end %>
   </tbody>

@@ -10,5 +10,16 @@
   <%= @ingredient.unit %>
 </p>
 
+<p>
+  <strong>Packungseinheit:</strong>
+  <%= @ingredient.package_unit %>
+</p>
+
+<p>
+  <strong>Packungsgröße:</strong>
+  <%= @ingredient.package_size %>
+</p>
+
+
 <%= link_to 'Edit', edit_ingredient_path(@ingredient) %> |
 <%= link_to 'Back', ingredients_path %>

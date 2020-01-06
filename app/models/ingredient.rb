@@ -14,4 +14,14 @@ class Ingredient < ApplicationRecord
   def title_unit
     "#{title} (#{unit})"
   end
+
+  def package_count
+    (total_count / (package_size.presence || 1)).ceil
+  end
+
+  def fancy_package_unit
+    return unit if package_unit.blank?
+    return unit if package_size == 1
+    "#{package_unit} a #{package_size} #{unit}"
+  end
 end

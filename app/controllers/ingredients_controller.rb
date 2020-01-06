@@ -1,5 +1,5 @@
 class IngredientsController < ApplicationController
-  before_action :set_ingredient, only: [:show, :edit, :update, :destroy]
+  before_action :set_ingredient, only: [:show, :edit, :update, :destroy, :shop]
 
   # GET /ingredients
   # GET /ingredients.json
@@ -20,6 +20,15 @@ class IngredientsController < ApplicationController
 
   # GET /ingredients/1/edit
   def edit
+  end
+
+  def shop
+    @ingredient.added_to_cart = !@ingredient.added_to_cart
+    @ingredient.save
+    respond_to do |format|
+      format.html { redirect_to ingredients_url, notice: 'Shopping cart updated.' }
+      format.json { head :no_content }
+    end
   end
 
   # POST /ingredients
@@ -55,7 +64,7 @@ class IngredientsController < ApplicationController
   # DELETE /ingredients/1
   # DELETE /ingredients/1.json
   def destroy
-    @ingredient.destroy
+    @ingredient.destroy if @ingredient.recipes.count.zero?
     respond_to do |format|
       format.html { redirect_to ingredients_url, notice: 'Ingredient was successfully destroyed.' }
       format.json { head :no_content }
@@ -71,6 +80,6 @@ class IngredientsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ingredient_params
-      params.require(:ingredient).permit(:title, :unit)
+      params.require(:ingredient).permit(:title, :unit, :package_size, :package_unit)
     end
 end
