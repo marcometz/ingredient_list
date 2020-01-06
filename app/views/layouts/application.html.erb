@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>IngredientList</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= javascript_pack_tag 'application' %>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/meals">Gerichte</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/ingredients">Zutaten</a>
+          </li>
+          <li class="nav-item">
+           <a class="nav-link disabled"href="#"><%= Recipe::TOTAL_ADULT %> Erwachsene</a>
+          </li>
+          <li class="nav-item">
+           <a class="nav-link disabled"href="#"><%= Recipe::TOTAL_TEEN %> Jugendliche</a>
+          </li>
+          <li class="nav-item">
+           <a class="nav-link disabled"href="#"><%= Recipe::TOTAL_CHILD %> Kinder</a>
+          </li>
+      </div>
+    </nav>
+
+    <br>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-8">
+          <%= yield %>
+          <br>
+        </div>
+        <% if @show_shopping_list %>
+          <%= render partial: 'layouts/shopping_list' %>
+        <% end %>
+      </div>
+    </div>
+  </body>
+</html>

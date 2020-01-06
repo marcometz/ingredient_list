@@ -1,0 +1,71 @@
+<%= form_with(model: meal, local: true) do |form| %>
+  <% if meal.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(meal.errors.count, "error") %> prohibited this meal from being saved:</h2>
+
+      <ul>
+        <% meal.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :title, "Name" %>
+    <%= form.text_field :title, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :amount, "Häufigkeit pro Woche" %>
+    <%= form.number_field :amount, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :meal_type, "Art" %>
+    <%= form.select :meal_type, options_for_select(Meal.meal_types.keys, @meal.meal_type), {}, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :state, "Status" %>
+    <%= form.select :state, options_for_select(Meal.states.keys, @meal.state), {}, class: "form-control" %>
+  </div>
+
+  <br>
+
+  <table class="table table-borderless">
+    <thead class="thead-light">
+    <tr>
+      <th>Zutat</th>
+      <th>pro Erwachsener</th>
+      <th>pro Jugendlicher</th>
+      <th>pro Kind</th>
+      <th>Löschen</th>
+    </tr>
+    </thead>
+      <%= form.fields_for :recipes do |r| %>
+        <tr>
+          <td>
+            <%= r.select :ingredient_id, options_from_collection_for_select(Ingredient.all.order(:title), :id, :title_unit, r.object.ingredient_id), include_blank: true %>
+          </td>
+          <td>
+            <%= r.text_field :amount_adult %>
+          </td>
+          <td>
+            <%= r.text_field :amount_teen %>
+          </td>
+          <td>
+            <%= r.text_field :amount_child %>
+          </td>
+          <td>
+            <%= r.check_box :_destroy%>
+          </td>
+        </tr>
+      <% end %>
+  </table>
+
+  <div class="actions">
+    <%= form.submit "Speichern", class: "btn btn-primary" %>
+    <%= link_to 'Anzeigen', @meal, class: "btn btn-secondary" %>
+  </div>
+<% end %>

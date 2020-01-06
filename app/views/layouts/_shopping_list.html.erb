@@ -1,0 +1,40 @@
+<div class="col-lg-4">
+          <div class="card">
+            <div class="card-header">
+              Zutaten
+            </div>
+            <div class="card-body">
+              <p class="card-text">
+                Liste aller verfügbaren Zutaten für
+                <ul>
+                  <li><%= Recipe::TOTAL_ADULT %> Erwachsene</li>
+                  <li><%= Recipe::TOTAL_TEEN %> Jugendliche</li>
+                  <li><%= Recipe::TOTAL_CHILD %> Kinder</li>
+                </ul>
+              </p>
+                <table class="table table-sm table-striped">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Menge</th>
+                      <th colspan="2"></th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <% @ingredients.each do |ingredient| %>
+                      <tr>
+                        <td><%= ingredient.title %></td>
+                        <td><%= ingredient.total_count %> <%= ingredient.unit %></td>
+                        <td><%= link_to 'Edit', edit_ingredient_path(ingredient) %></td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+
+                <br>
+
+                <%= link_to 'Neue Zutat', new_ingredient_path, class: "btn btn-primary" %>
+            </div>
+          </div>
+        </div>
