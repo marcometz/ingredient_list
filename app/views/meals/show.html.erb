@@ -10,39 +10,41 @@
   <%= @meal.amount %>
 </p>
 
-<table class="table">
-  <tr>
-    <th>Zutat</th>
-    <th>Pro Erwachsener</th>
-    <th>Pro Jugendlicher</th>
-    <th>Pro Kind</th>
-    <th>Menge pro Tag/Gericht</th>
-    <th>Summe</th>
-  </tr>
-  <% @meal.recipes.each do |recipe|%>
+<div class="table-responsive-sm">
+  <table class="table">
     <tr>
-        <td>
-          <%= recipe.ingredient.try(:title) %>
-          (<%= recipe.ingredient.try(:unit) %>)
-        </td>
-        <td>
-          <%= recipe.amount_adult %>
-        </td>
-        <td>
-          <%= recipe.amount_teen %>
-        </td>
-        <td>
-          <%= recipe.amount_child %>
-        </td>
-        <td>
-          <%= recipe.total_amount_per_meal.round(2) %>
-        </td>
-        <td>
-          <strong><%= recipe.total_amount %></strong>
-        </td>
+      <th>Zutat</th>
+      <th>Pro Erwachsener</th>
+      <th>Pro Jugendlicher</th>
+      <th>Pro Kind</th>
+      <th>Menge pro Tag/Gericht</th>
+      <th>Summe</th>
     </tr>
-  <% end %>
-</table>
+    <% @meal.recipes.each do |recipe|%>
+      <tr>
+          <td>
+            <%= recipe.ingredient.try(:title) %>
+            (<%= recipe.ingredient.try(:unit) %>)
+          </td>
+          <td>
+            <%= recipe.amount_adult %>
+          </td>
+          <td>
+            <%= recipe.amount_teen %>
+          </td>
+          <td>
+            <%= recipe.amount_child %>
+          </td>
+          <td>
+            <%= recipe.total_amount_per_meal.round(2) %>
+          </td>
+          <td>
+            <strong><%= recipe.total_amount %></strong>
+          </td>
+      </tr>
+    <% end %>
+  </table>
+</div>
 
 
 
