@@ -20,6 +20,16 @@
   <%= @ingredient.package_size %>
 </p>
 
+<p>
+  <strong>Preis pro Packung:</strong>
+  <%= @ingredient.price_per_package %>€
+</p>
+
+<p>
+  <strong>Einkaufsort:</strong>
+  <%= @ingredient.location %>
+</p>
+
 
 <%= link_to 'Edit', edit_ingredient_path(@ingredient) %> |
 <%= link_to 'Back', ingredients_path %>

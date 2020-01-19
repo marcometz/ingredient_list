@@ -1,6 +1,8 @@
 class Ingredient < ApplicationRecord
   has_many :recipes
 
+  LOCATIONS = ["Metro - frisch", "Metro - haltbar", "Spar", "Andere"]
+
   validates_uniqueness_of :title
 
   def total_count
@@ -17,6 +19,12 @@ class Ingredient < ApplicationRecord
 
   def package_count
     (total_count / (package_size.presence || 1)).ceil
+  end
+
+  def total_price
+    return 0 unless price_per_package
+
+    package_count * price_per_package
   end
 
   def fancy_package_unit

@@ -6,6 +6,7 @@ class IngredientsController < ApplicationController
   def index
     @show_shopping_list = false
     @ingredients = Ingredient.all.order(:title)
+    @ingredients = @ingredients.where(location: params[:location]) if params[:location].present?
   end
 
   # GET /ingredients/1
@@ -80,6 +81,6 @@ class IngredientsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ingredient_params
-      params.require(:ingredient).permit(:title, :unit, :package_size, :package_unit)
+      params.require(:ingredient).permit(:title, :unit, :package_size, :package_unit, :price_per_package, :location)
     end
 end

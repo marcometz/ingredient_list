@@ -31,6 +31,16 @@
     <%= form.text_field :package_size %>
   </div>
 
+  <div class="field">
+    <%= form.label :price_per_package, "Preis pro Packung" %>
+    <%= form.text_field :price_per_package %>
+  </div>
+
+  <div class="field">
+    <%= form.label :location, "Einkaufsort" %>
+    <%= form.select :location, Ingredient::LOCATIONS, include_blank: true %>
+  </div>
+
   <div class="actions">
     <%= form.submit "Speichern", class: "btn btn-primary" %>
   </div>
