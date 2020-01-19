@@ -36,7 +36,7 @@
         <td><%= ingredient.total_amount_per_meal %> <%= ingredient.unit %></td>
         <td><strong><%= ingredient.total_count %> <%= ingredient.unit %></strong></td>
         <td><strong><%= ingredient.package_count %> <%= ingredient.fancy_package_unit %></strong></td>
-        <td><%= ingredient.total_price %>€</td>
+        <td><%= ingredient.total_price.round(2) %>€</td>
         <td>
           <%= link_to edit_ingredient_path(ingredient) do %>
             <i class="far fa-edit"></i>
