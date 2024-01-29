@@ -10,13 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_18_121818) do
-
+ActiveRecord::Schema[7.1].define(version: 2024_01_29_204800) do
   create_table "ingredients", force: :cascade do |t|
     t.string "title"
     t.string "unit"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.float "package_size"
     t.string "package_unit"
     t.boolean "added_to_cart", default: false
@@ -28,22 +27,30 @@ ActiveRecord::Schema.define(version: 2022_01_18_121818) do
   create_table "meals", force: :cascade do |t|
     t.string "title"
     t.integer "amount"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer "meal_type", default: 1
     t.integer "state", default: 1
   end
 
   create_table "recipes", force: :cascade do |t|
-    t.bigint "meal_id", null: false
-    t.bigint "ingredient_id", null: false
+    t.integer "meal_id", null: false
+    t.integer "ingredient_id", null: false
     t.float "amount_adult"
     t.float "amount_teen"
     t.float "amount_child"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["ingredient_id"], name: "index_recipes_on_ingredient_id"
     t.index ["meal_id"], name: "index_recipes_on_meal_id"
+  end
+
+  create_table "settings", force: :cascade do |t|
+    t.string "var", null: false
+    t.text "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["var"], name: "index_settings_on_var", unique: true
   end
 
   add_foreign_key "recipes", "ingredients"
