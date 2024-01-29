@@ -21,6 +21,7 @@
     <tr>
       <th>Name</th>
       <th>Menge pro Gericht/Tag</th>
+      <th>Stückpreis</th>
       <th>Menge pro Woche</th>
       <th>Einkaufsmengen</th>
       <th>Preis</th>
@@ -32,8 +33,9 @@
   <tbody>
     <% @ingredients.each do |ingredient| %>
       <tr class="<%= ingredient.added_to_cart ? 'on-shopping-list' : '' %>">
-        <td><%= ingredient.title %></td>
+        <td><%= ingredient.title %> (<%= ingredient.brand_name.presence %>)</td>
         <td><%= ingredient.total_amount_per_meal %> <%= ingredient.unit %></td>
+        <td><strong><%= ingredient.price_per_package %></strong></td>
         <td><strong><%= ingredient.total_count %> <%= ingredient.unit %></strong></td>
         <td><strong><%= ingredient.package_count %> <%= ingredient.fancy_package_unit %></strong></td>
         <td><%= ingredient.total_price.round(2) %>€</td>

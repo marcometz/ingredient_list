@@ -41,6 +41,11 @@
     <%= form.select :location, Ingredient::LOCATIONS, include_blank: true %>
   </div>
 
+  <div class="field">
+    <%= form.label :brand_name, "Markenname" %>
+    <%= form.text_field :brand_name %>
+  </div>
+
   <div class="actions">
     <%= form.submit "Speichern", class: "btn btn-primary" %>
   </div>

@@ -2,17 +2,17 @@
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
-# This file is the source Rails uses to define your schema when running `rails
-# db:schema:load`. When creating a new database, `rails db:schema:load` tends to
+# This file is the source Rails uses to define your schema when running `bin/rails
+# db:schema:load`. When creating a new database, `bin/rails db:schema:load` tends to
 # be faster and is potentially less error prone than running all of your
 # migrations from scratch. Old migrations may fail to apply correctly if those
 # migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_19_125722) do
+ActiveRecord::Schema.define(version: 2022_01_18_121818) do
 
-  create_table "ingredients", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "ingredients", force: :cascade do |t|
     t.string "title"
     t.string "unit"
     t.datetime "created_at", precision: 6, null: false
@@ -22,9 +22,10 @@ ActiveRecord::Schema.define(version: 2020_01_19_125722) do
     t.boolean "added_to_cart", default: false
     t.string "location"
     t.float "price_per_package"
+    t.text "brand_name"
   end
 
-  create_table "meals", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "meals", force: :cascade do |t|
     t.string "title"
     t.integer "amount"
     t.datetime "created_at", precision: 6, null: false
@@ -33,7 +34,7 @@ ActiveRecord::Schema.define(version: 2020_01_19_125722) do
     t.integer "state", default: 1
   end
 
-  create_table "recipes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "recipes", force: :cascade do |t|
     t.bigint "meal_id", null: false
     t.bigint "ingredient_id", null: false
     t.float "amount_adult"

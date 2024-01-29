@@ -2,9 +2,9 @@ class Recipe < ApplicationRecord
   belongs_to :meal
   belongs_to :ingredient
 
-  TOTAL_ADULT = 11
-  TOTAL_TEEN = 7
-  TOTAL_CHILD = 3
+  TOTAL_ADULT = 21
+  TOTAL_TEEN = 10
+  TOTAL_CHILD = 12
 
   accepts_nested_attributes_for :ingredient
 

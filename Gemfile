@@ -1,13 +1,14 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.7.0'
+ruby "3.0.1"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 6.0.2', '>= 6.0.2.1'
-gem 'mysql2', '>= 0.4.4'
+gem "rails", "~> 6.1.4", ">= 6.1.4.1"
+# Use mysql as the database for Active Record
+gem "sqlite3"
 # Use Puma as the app server
-gem 'puma', '~> 4.1'
+gem "puma", "~> 5.0"
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 6'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
@@ -61,3 +62,41 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem 'whenever', require: false
+gem 'rswag-api'
+gem 'rswag-ui'
+group :development, :test do
+  gem 'pry-rails'
+  gem 'rails-controller-testing'
+  gem 'rspec-rails'
+  gem 'rswag-specs'
+  gem 'rspec_junit_formatter'
+  gem 'simplecov', '0.17.1', require: false
+  gem 'simplecov-json', require: false, git: 'https://github.com/kevjin/simplecov-json.git', branch: 'simplecov-compatibility'
+end
+
+group :development do
+  gem 'annotate'
+  gem 'rubocop', '~> 0.81.0', require: false
+  gem 'rubocop-rspec'
+end
+
+group :test do
+  gem 'database_cleaner'
+  gem 'factory_bot_rails'
+  gem 'faker'
+  gem 'shoulda'
+  gem 'timecop'
+  gem 'vcr'
+  gem 'webmock'
+end
+
+group :development, :test do
+end
+
+group :development do
+end
+
+group :test do
+end
