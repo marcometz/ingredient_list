@@ -31,8 +31,10 @@
             <%= link_to meal do %><i class="far fa-eye"></i><% end %>
             <%= link_to edit_meal_path(meal) do %><i class="far fa-edit"></i><% end %>
             <% if meal.recipes.count.zero? %>
-              <%= link_to meal, method: :delete, data: { confirm: 'Are you sure?' } do %>
-                <i class="far fa-trash"></i>
+              <%= form_with url: meal, method: :delete, html: { style: 'display: inline' } do %>
+                <%= button_tag(type: 'submit', class: 'delete-button', data: { confirm: 'Are you sure?' }) do %>
+                  <i class="far fa-trash"></i>
+                <% end %>
               <% end %>
             <% end %>
           </td>
@@ -67,8 +69,10 @@
             <%= link_to meal do %><i class="far fa-eye"></i><% end %>
             <%= link_to edit_meal_path(meal) do %><i class="far fa-edit"></i><% end %>
             <% if meal.recipes.count.zero? %>
-              <%= link_to meal, data: { method: :delete, confirm: 'Are you sure?' } do %>
-                <i class="far fa-trash"></i>
+              <%= form_with url: meal, method: :delete, html: { style: 'display: inline' } do %>
+                <%= button_tag(type: 'submit', class: 'delete-button', data: { confirm: 'Are you sure?' }) do %>
+                  <i class="far fa-trash"></i>
+                <% end %>
               <% end %>
             <% end %>
           </td>

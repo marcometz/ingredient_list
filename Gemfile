@@ -105,3 +105,5 @@ end
 
 group :test do
 end
+
+gem "jsbundling-rails", "~> 1.3"
