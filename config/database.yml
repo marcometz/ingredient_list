@@ -1,0 +1,21 @@
+---
+default:
+  adapter: sqlite3
+  encoding: utf8mb4
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+development:
+  adapter: sqlite3
+  encoding: utf8mb4
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  database: db/development.sqlite3
+test:
+  adapter: sqlite3
+  encoding: utf8mb4
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  database: ingre_eb0a1917_tst
+production:
+  adapter: sqlite3
+  encoding: utf8mb4
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: eon
+  database: db/production.sqlite3
