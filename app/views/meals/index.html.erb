@@ -67,7 +67,7 @@
             <%= link_to meal do %><i class="far fa-eye"></i><% end %>
             <%= link_to edit_meal_path(meal) do %><i class="far fa-edit"></i><% end %>
             <% if meal.recipes.count.zero? %>
-              <%= link_to meal, method: :delete, data: { confirm: 'Are you sure?' } do %>
+              <%= link_to meal, data: { method: :delete, confirm: 'Are you sure?' } do %>
                 <i class="far fa-trash"></i>
               <% end %>
             <% end %>
