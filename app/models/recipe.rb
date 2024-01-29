@@ -2,16 +2,12 @@ class Recipe < ApplicationRecord
   belongs_to :meal
   belongs_to :ingredient
 
-  TOTAL_ADULT = Setting.adults
-  TOTAL_TEEN = Setting.teens
-  TOTAL_CHILD = Setting.children
-
   accepts_nested_attributes_for :ingredient
 
   def total_amount_per_meal
-    (amount_adult.to_f * TOTAL_ADULT) +
-      (amount_teen.to_f * TOTAL_TEEN) +
-      (amount_child.to_f * TOTAL_CHILD)
+    (amount_adult.to_f * Setting.adults) +
+      (amount_teen.to_f * Setting.teens) +
+      (amount_child.to_f * Setting.children)
   end
 
   def total_amount

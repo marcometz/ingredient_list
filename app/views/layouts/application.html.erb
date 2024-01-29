@@ -29,14 +29,18 @@
             <a class="nav-link" href="/ingredients">Zutaten</a>
           </li>
           <li class="nav-item">
-           <a class="nav-link disabled"href="#"><%= Recipe::TOTAL_ADULT %> Erwachsene</a>
+           <a class="nav-link disabled"href="#"><%= Setting.adults %> Erwachsene</a>
           </li>
           <li class="nav-item">
-           <a class="nav-link disabled"href="#"><%= Recipe::TOTAL_TEEN %> Jugendliche</a>
+           <a class="nav-link disabled"href="#"><%= Setting.teens %> Jugendliche</a>
           </li>
           <li class="nav-item">
-           <a class="nav-link disabled"href="#"><%= Recipe::TOTAL_CHILD %> Kinder</a>
+           <a class="nav-link disabled"href="#"><%= Setting.children %> Kinder</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/settings">Einstellungen</a>
+          </li>
+
       </div>
     </nav>
 

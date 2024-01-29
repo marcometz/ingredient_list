@@ -7,9 +7,9 @@
               <p class="card-text">
                 Liste aller verfügbaren Zutaten für
                 <ul>
-                  <li><%= Recipe::TOTAL_ADULT %> Erwachsene</li>
-                  <li><%= Recipe::TOTAL_TEEN %> Jugendliche</li>
-                  <li><%= Recipe::TOTAL_CHILD %> Kinder</li>
+                  <li><%= Setting.adults %> Erwachsene</li>
+                  <li><%= Setting.teens %> Jugendliche</li>
+                  <li><%= Setting.children %> Kinder</li>
                 </ul>
               </p>
                 <table class="table table-sm table-striped">
