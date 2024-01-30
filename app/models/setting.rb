@@ -6,6 +6,7 @@ class Setting < RailsSettings::Base
   field :adults, type: :integer, default: 21
   field :teens, type: :integer, default: 10
   field :children, type: :integer, default: 12
+  field :shopping_location, type: :array, default: ["Metro - frisch", "Metro - haltbar", "Spar", "Andere"]
 
   # field :host, type: :string, default: "http://localhost:3000"
   # field :default_locale, default: "en", type: :string

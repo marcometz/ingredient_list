@@ -5,9 +5,11 @@ class IngredientsController < ApplicationController
   # GET /ingredients.json
   def index
     @show_shopping_list = false
+    @used_locations = Ingredient.pluck(:location).uniq.compact.sort
     @ingredients = Ingredient.all.order(:title)
     @ingredients = @ingredients.where(location: params[:location]) if params[:location].present?
   end
+
 
   # GET /ingredients/1
   # GET /ingredients/1.json

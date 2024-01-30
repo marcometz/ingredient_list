@@ -1,17 +1,22 @@
 <%= form_for(Setting.new, url: admin_settings_path) do |f| %>
   <div class="form-group">
-    <label class="control-label">Erwachsene</label>
+    <label class="control-label">Anzahl Erwachsene</label>
     <%= f.text_field :adults, value: Setting.adults, class: "form-control"  %>
   </div>
 
   <div class="form-group">
-    <label class="control-label">Jugendliche</label>
+    <label class="control-label">Anzahl Jugendliche</label>
     <%= f.text_field :teens, value: Setting.teens, class: "form-control"  %>
   </div>
 
   <div class="form-group">
-    <label class="control-label">Kinder</label>
+    <label class="control-label">Anzahl Kinder</label>
     <%= f.text_field :children, value: Setting.children, class: "form-control"  %>
+  </div>
+
+  <div class="form-group">
+    <label class="control-label">Einkaufsmöglichkeiten</label>
+    <%= f.text_area :shopping_location, value: Setting.shopping_location.join("\n"), class: "form-control", rows: 10  %>
   </div>
 
   <div>

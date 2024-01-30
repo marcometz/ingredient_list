@@ -17,7 +17,7 @@ module Admin
 
     private
       def setting_params
-        params.require(:setting).permit(:adults, :teens, :children)
+        params.require(:setting).permit(:adults, :teens, :children, :shopping_location)
       end
   end
 end

@@ -38,7 +38,7 @@
 
   <div class="field">
     <%= form.label :location, "Einkaufsort" %>
-    <%= form.select :location, Ingredient::LOCATIONS, include_blank: true %>
+    <%= form.select :location, Setting.shopping_location, include_blank: true %>
   </div>
 
   <div class="field">

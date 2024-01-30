@@ -1,8 +1,6 @@
 class Ingredient < ApplicationRecord
   has_many :recipes
 
-  LOCATIONS = ["Metro - frisch", "Metro - haltbar", "Spar", "Andere"]
-
   validates_uniqueness_of :title
 
   def total_count
