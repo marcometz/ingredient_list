@@ -8,7 +8,7 @@
             <a class="nav-link" href="/projects">Projekte</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link disabled project"><%= truncate(@current_project.title, length: 20)  %></a>
+            <a class="nav-link disabled project"><%= truncate(@current_project.try(:title), length: 20)  %></a>
           <li class="nav-item">
             <a class="nav-link" href="/meals">Gerichte</a>
           </li>
