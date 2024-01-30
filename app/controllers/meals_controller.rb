@@ -4,7 +4,7 @@ class MealsController < ApplicationController
   # GET /meals
   # GET /meals.json
   def index
-    @meals = Meal.all.order("meal_type DESC")
+    @meals = Meal.where(project_id: @current_project.id).order("meal_type DESC")
   end
 
   # GET /meals/1
@@ -25,7 +25,7 @@ class MealsController < ApplicationController
   # POST /meals
   # POST /meals.json
   def create
-    @meal = Meal.new(meal_params)
+    @meal = Meal.new(meal_params.merge(project_id: @current_project.id))
 
     respond_to do |format|
       if @meal.save

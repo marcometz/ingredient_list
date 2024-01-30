@@ -3,26 +3,28 @@ class Ingredient < ApplicationRecord
 
   validates_uniqueness_of :title
 
-  def total_count
-    recipes.map(&:total_amount).sum.round(2)
+  def total_count(project_id)
+    recipe_ids = Project.find(project_id).recipes.pluck(:id)
+    recipes.where(id: recipe_ids).map(&:total_amount).sum.round(2)
   end
 
-  def total_amount_per_meal
-    recipes.map(&:total_amount_per_meal).sum.round(2)
+  def total_amount_per_meal(project_id)
+    recipe_ids = Project.find(project_id).recipes.pluck(:id)
+    recipes.where(id: recipe_ids).map(&:total_amount_per_meal).sum.round(2)
   end
 
   def title_unit
     "#{title} (#{unit})"
   end
 
-  def package_count
-    (total_count / (package_size.presence || 1)).ceil
+  def package_count(project_id)
+    (total_count(project_id) / (package_size.presence || 1)).ceil
   end
 
-  def total_price
+  def total_price(project_id)
     return 0 unless price_per_package
 
-    package_count * price_per_package
+    package_count(project_id) * price_per_package
   end
 
   def fancy_package_unit

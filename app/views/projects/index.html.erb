@@ -1,0 +1,24 @@
+<p style="color: green"><%= notice %></p>
+
+<div style="text-align: center;">
+  <%= link_to "Neues Projekt anlegen", new_project_path, class: "btn btn-primary" %>
+</div>
+
+<br>
+
+<div id="projects">
+  <% @projects.each do |project| %>
+    <div>
+      <%= link_to project, class: "tile #{current_project(project.id)}" do %>
+        <div>
+          <%= project.title %>
+        </div>
+        <% if current_project(project.id) == "active" %>
+          <div>
+            <i class="fas fa-check"></i>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

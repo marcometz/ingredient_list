@@ -37,3 +37,42 @@
   color: inherit;
   cursor: pointer;
 }
+
+// Kachel für die Projekte
+// max 3 pro Reihe
+// Bildschirmbreite
+// Text horizontal und  vertikal zentriert
+// Höhe und Breite gleich
+.tile {
+  width: 30%;
+  float: left;
+  background-color: #fff;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin: 10px;
+  text-align: center;
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);
+  // vertikal zentriert
+  display: flex;
+  align-items: center;
+  // horizontal zentriert
+  justify-content: center;
+  // Höhe und Breite gleich
+  height: 200px;
+  text-decoration: none;
+  font-size: 30px !important;
+
+  &:hover {
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
+    text-decoration: none;
+  }
+  &.active {
+    box-shadow: 0px 0px 15px 0px red;
+    text-decoration: none;
+  }
+}
+
+.nav-link.disabled.project {
+  color: red !important;
+}

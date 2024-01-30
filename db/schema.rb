@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_29_211007) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_30_191726) do
   create_table "ingredients", force: :cascade do |t|
     t.string "title"
     t.string "unit"
@@ -31,11 +31,18 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_29_211007) do
     t.datetime "updated_at", null: false
     t.integer "meal_type", default: 1
     t.integer "state", default: 1
+    t.integer "project_id"
+  end
+
+  create_table "projects", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "recipes", force: :cascade do |t|
-    t.integer "meal_id", null: false
-    t.integer "ingredient_id", null: false
+    t.bigint "meal_id", null: false
+    t.bigint "ingredient_id", null: false
     t.float "amount_adult"
     t.float "amount_teen"
     t.float "amount_child"

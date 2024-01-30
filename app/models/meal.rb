@@ -1,4 +1,5 @@
 class Meal < ApplicationRecord
+  belongs_to :project
   has_many :recipes
   has_many :ingedients, through: :recipes
 

@@ -34,11 +34,11 @@
     <% @ingredients.each do |ingredient| %>
       <tr class="<%= ingredient.added_to_cart ? 'on-shopping-list' : '' %>">
         <td><%= ingredient.title %> (<%= ingredient.brand_name.presence %>)</td>
-        <td><%= ingredient.total_amount_per_meal %> <%= ingredient.unit %></td>
+        <td><%= ingredient.total_amount_per_meal(@current_project.id) %> <%= ingredient.unit %></td>
         <td><strong><%= ingredient.price_per_package %></strong></td>
-        <td><strong><%= ingredient.total_count %> <%= ingredient.unit %></strong></td>
-        <td><strong><%= ingredient.package_count %> <%= ingredient.fancy_package_unit %></strong></td>
-        <td><%= ingredient.total_price.round(2) %>€</td>
+        <td><strong><%= ingredient.total_count(@current_project.id) %> <%= ingredient.unit %></strong></td>
+        <td><strong><%= ingredient.package_count(@current_project.id) %> <%= ingredient.fancy_package_unit %></strong></td>
+        <td><%= ingredient.total_price(@current_project.id).round(2) %>€</td>
         <td>
           <%= link_to edit_ingredient_path(ingredient) do %>
             <i class="far fa-edit"></i>
@@ -82,7 +82,7 @@
         </td>
         <td>
           <%= ingredient.title %>:
-          <strong><%= ingredient.package_count %> <%= ingredient.fancy_package_unit %></strong>
+          <strong><%= ingredient.package_count(@current_project.id) %> <%= ingredient.fancy_package_unit %></strong>
         </td>
         <td>
           <%= link_to edit_ingredient_path(ingredient) do %>
@@ -105,9 +105,9 @@
 <div class="row">
   <div class="col">
     <ul>
-    <li>Gesamtpreis: <%= @ingredients.sum(&:total_price) %>€</li>
+    <li>Gesamtpreis: <%= @ingredients.sum{|i| i.total_price(@current_project.id)} %>€</li>
     <% @ingredients.group_by(&:location).each do |location, ingredients| %>
-      <li><%= location %>: <%= ingredients.sum(&:total_price) %>€</li>
+      <li><%= location %>: <%= ingredients.sum{ |i| i.total_price(@current_project.id) } %>€</li>
     <% end %>
   </div>
   </ul>
