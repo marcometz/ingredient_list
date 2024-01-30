@@ -10,7 +10,6 @@ class IngredientsController < ApplicationController
     @ingredients = @ingredients.where(location: params[:location]) if params[:location].present?
   end
 
-
   # GET /ingredients/1
   # GET /ingredients/1.json
   def show
