@@ -11,7 +11,11 @@ class ApplicationController < ActionController::Base
 
   def load_ingredients
     @show_shopping_list = true
-    @ingredients = @current_project.ingredients.order(:title)
+    if @current_project
+      @ingredients = @current_project.ingredients.order(:title)
+    else
+      @ingredients = []
+    end
   end
 
 end
