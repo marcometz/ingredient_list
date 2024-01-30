@@ -23,6 +23,7 @@
 
                   <tbody>
                     <% @ingredients.each do |ingredient| %>
+                      <% next if ingredient.total_count.to_f == 0.0 %>
                       <tr>
                         <td><%= ingredient.title %></td>
                         <td><%= ingredient.total_count %> <%= ingredient.unit %></td>
