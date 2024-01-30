@@ -4,7 +4,11 @@ class MealsController < ApplicationController
   # GET /meals
   # GET /meals.json
   def index
-    @meals = Meal.where(project_id: @current_project.id).order("meal_type DESC")
+    if @current_project.present?
+      @meals = Meal.where(project_id: @current_project.id).order("meal_type DESC")
+    else
+      @meals = []
+    end
   end
 
   # GET /meals/1
