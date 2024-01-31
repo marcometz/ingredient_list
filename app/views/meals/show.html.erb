@@ -36,10 +36,10 @@
             <%= recipe.amount_child %>
           </td>
           <td>
-            <%= recipe.total_amount_per_meal.round(2) %>
+            <%= recipe.total_amount_per_meal(@current_project.id).round(2) %>
           </td>
           <td>
-            <strong><%= recipe.total_amount %></strong>
+            <strong><%= recipe.total_amount(@current_project.id) %></strong>
           </td>
       </tr>
     <% end %>

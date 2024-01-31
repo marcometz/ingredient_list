@@ -4,13 +4,14 @@ class Recipe < ApplicationRecord
 
   accepts_nested_attributes_for :ingredient
 
-  def total_amount_per_meal
-    (amount_adult.to_f * Setting.adults) +
-      (amount_teen.to_f * Setting.teens) +
-      (amount_child.to_f * Setting.children)
+  def total_amount_per_meal(project_id)
+    project = Project.find(project_id)
+    (amount_adult.to_f * project.adults_count.to_i) +
+      (amount_teen.to_f * project.teens_count.to_i) +
+      (amount_child.to_f * project.children_count.to_i)
   end
 
-  def total_amount
-    (total_amount_per_meal * (meal.amount.presence || 1 )).round(2)
+  def total_amount(project_id)
+    (total_amount_per_meal(project_id) * (meal.amount.presence || 1 )).round(2)
   end
 end

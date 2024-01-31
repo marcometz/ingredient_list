@@ -1,4 +1,15 @@
 <%= form_for(Setting.new, url: admin_settings_path) do |f| %>
+
+  <div class="form-group">
+    <label class="control-label">Einkaufsmöglichkeiten</label>
+    <%= f.text_area :shopping_location, value: Setting.shopping_location.join("\n"), class: "form-control", rows: 10  %>
+  </div>
+
+  <h3>Standardeinstellungen</h3>
+  <p>
+    Diese Angaben werden durch die <%= link_to "Projekteinstellungen", edit_project_path(@current_project)%> überschrieben.
+
+  </p>
   <div class="form-group">
     <label class="control-label">Anzahl Erwachsene</label>
     <%= f.text_field :adults, value: Setting.adults, class: "form-control"  %>
@@ -14,12 +25,7 @@
     <%= f.text_field :children, value: Setting.children, class: "form-control"  %>
   </div>
 
-  <div class="form-group">
-    <label class="control-label">Einkaufsmöglichkeiten</label>
-    <%= f.text_area :shopping_location, value: Setting.shopping_location.join("\n"), class: "form-control", rows: 10  %>
-  </div>
-
   <div>
-    <%= f.submit 'Speichern' %>
+    <%= f.submit 'Speichern', class: "btn btn-primary" %>
   </div>
 <% end %>

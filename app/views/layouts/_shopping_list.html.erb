@@ -7,9 +7,9 @@
               <p class="card-text">
                 Liste aller benötigten Zutaten für
                 <ul>
-                  <li><%= Setting.adults %> Erwachsene</li>
-                  <li><%= Setting.teens %> Jugendliche</li>
-                  <li><%= Setting.children %> Kinder</li>
+                  <li><%= @current_project.adults_count %> Erwachsene</li>
+                  <li><%= @current_project.teens_count %> Jugendliche</li>
+                  <li><%= @current_project.children_count %> Kinder</li>
                 </ul>
               </p>
                 <table class="table table-sm table-striped">

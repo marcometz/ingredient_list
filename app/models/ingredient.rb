@@ -5,12 +5,12 @@ class Ingredient < ApplicationRecord
 
   def total_count(project_id)
     recipe_ids = Project.find(project_id).recipes.pluck(:id)
-    recipes.where(id: recipe_ids).map(&:total_amount).sum.round(2)
+    recipes.where(id: recipe_ids).map{|r| r.total_amount(project_id)}.sum.round(2)
   end
 
   def total_amount_per_meal(project_id)
     recipe_ids = Project.find(project_id).recipes.pluck(:id)
-    recipes.where(id: recipe_ids).map(&:total_amount_per_meal).sum.round(2)
+    recipes.where(id: recipe_ids).map{ |r| r.total_amount_per_meal(project_id) }.sum.round(2)
   end
 
   def title_unit

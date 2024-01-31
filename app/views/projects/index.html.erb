@@ -8,17 +8,18 @@
 
 <div id="projects">
   <% @projects.each do |project| %>
-    <div>
-      <%= link_to project, class: "tile #{current_project(project.id)}" do %>
+    <div class= "tile <%= current_project(project.id) %>">
+      <%= link_to project do %>
         <div>
           <%= project.title %>
         </div>
         <% if current_project(project.id) == "active" %>
-          <div>
-            <i class="fas fa-check"></i>
-          </div>
+          <div><i class="fas fa-check"></i></div>
         <% end %>
       <% end %>
+      <div>
+        <%= link_to "", edit_project_path(project), class: "edit fas fa-edit" %>
+      </div>
     </div>
   <% end %>
 </div>
