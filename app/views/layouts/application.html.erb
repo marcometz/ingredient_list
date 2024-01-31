@@ -24,7 +24,7 @@
       <div class="row">
         <div class="<%= @show_shopping_list ? 'col-lg-8' : 'col-lg-12' %>">
           <%= yield %>
-          <br>
+          <br><br><br>
         </div>
         <% if @show_shopping_list %>
           <%= render partial: 'layouts/shopping_list' %>
