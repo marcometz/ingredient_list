@@ -6,7 +6,13 @@ class IngredientsController < ApplicationController
   def index
     @show_shopping_list = false
     @used_locations = Ingredient.pluck(:location).uniq.compact.sort
-    @ingredients = Ingredient.all.order(:title)
+
+    if params[:project].present?
+      @ingredients = Project.find(params[:project]).ingredients.order(:title)
+    else
+      @ingredients = Ingredient.all.order(:title)
+    end
+
     @ingredients = @ingredients.where(location: params[:location]) if params[:location].present?
   end
 
